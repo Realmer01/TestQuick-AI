@@ -69,8 +69,8 @@ Credits deducted from your account
 ### 1. Clone & Install
 
 ```bash
-git clone <repo-url>
-cd ai-testing-automation-agent-main
+git clone https://github.com/Realmer01/TestQuick-AI.git
+cd TestQuick-AI
 npm install
 ```
 
@@ -164,25 +164,40 @@ Then in TestQuickAI:
 ```
 app/
   api/
-    test-cases/run/route.ts   ← Main AI + execution engine
-    test-cases/settings/      ← Update test case metadata
-    user-repo/                ← Repo listing + settings
-    github/                   ← GitHub OAuth callback
-    webhooks/stripe/          ← Stripe payment webhooks
-  workspace/                  ← Protected dashboard
-  page.tsx                    ← Public landing page
+    checkout/stripe/route.ts   ← Stripe checkout session creation
+    generate-test-cases/       ← Auto-generate test cases via Gemini AI
+    github/                    ← GitHub OAuth callback & repo listing
+    test-cases/run/route.ts    ← Main AI script generator + Playwright execution
+    test-cases/settings/       ← Update test case metadata
+    user-repo/                 ← Connected repo listing + settings
+    users/                     ← User registration & credit management
+    webhooks/stripe/           ← Stripe payment webhooks
+  workspace/                   ← Protected dashboard routes
+  page.tsx                     ← Public landing page
 
 components/custom/
-  UserRepoList.tsx            ← Connected GitHub repos
-  WorkspaceBody.tsx           ← Dashboard body
-  TestCaseSettingDialog.tsx   ← Edit test case form
-  RepoSettings.tsx            ← Per-repo config dialog
+  EmptyWorkspace.tsx           ← Empty state view
+  RepoDialog.tsx               ← Add GitHub repo dialog
+  RepoSettings.tsx             ← Per-repo config dialog
+  TestCaseExecutionModel.tsx   ← Test execution modal & live log viewer
+  TestCaseList.tsx             ← List of created test cases
+  TestCaseSettingDialog.tsx    ← Edit test case modal
+  UserRepoList.tsx             ← Connected GitHub repos selector
+  WorkspaceBody.tsx            ← Main dashboard content
+  WorkspaceHeader.tsx          ← Top navigation header & credit counter
+
+context/
+  UserDetailContext.tsx        ← React context for user state & credits
 
 db/
-  schema.ts                   ← Drizzle ORM table definitions
-  index.ts                    ← Database client
+  schema.ts                    ← Drizzle ORM database tables
+  index.ts                     ← Neon database client setup
 
-proxy.ts                      ← Clerk auth middleware
+lib/
+  stripe.ts                    ← Stripe server configuration
+  utils.ts                     ← Shared utility functions (cn, etc.)
+
+proxy.ts                       ← Clerk auth middleware
 ```
 
 ---

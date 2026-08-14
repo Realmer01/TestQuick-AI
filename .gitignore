@@ -41,7 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# interview preparation (do not upload to github)
 /preparation
 prep_prompt.md
 
